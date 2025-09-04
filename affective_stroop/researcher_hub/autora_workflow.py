@@ -17,12 +17,14 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 
+from stimulus_sequence import stimulus_sequence
+
 # *** Set up variables *** #
 # independent variable is number of training trials (4 - 32)
-# dependent variable is difference of accuracy post vs pre-train trials (0 - 1)
+# dependent variable: emotional_valence_RT_diff (or accuracy_diff)
 variables = VariableCollection(
     independent_variables=[Variable(name="n_train", allowed_values=[i for i in range(4, 33)])],
-    dependent_variables=[Variable(name="accuracy_difference", value_range=(-1, 1))])
+    dependent_variables=[Variable(name="valence_rt_diff", value_range=(-1000, 1000))])
 
 # *** State *** #
 # With the variables, we can set up a state. The state object represents the state of our
@@ -102,18 +104,18 @@ experiment_runner = firebase_runner(
 # Again, we need to wrap the runner to use it on the state. Here, we send the raw conditions.
 @on_state()
 def runner_on_state(conditions):
-    data = experiment_runner(conditions)
-    # Here, parse the return value of the runner. The return value depends on the specific
-    # implementation of your online experiment (see testing_zone/src/design/main.js).
-    # In this example, the experiment runner returns a list of strings, that contain json formatted
-    # dictionaries.
-    # Example:
-    # data = ['{'n_train':12, accuracy_difference':.6}', ...]
-    result = []
-    for item in data:
-        result.append(json.loads(item))
-    return Delta(experiment_data=pd.DataFrame(result))
+    res = []
+    for _, condition_row in conditions.iterrows():
+        n_train = int(condition_row["n_train"])
+        js_code = stimulus_sequence(n_train)
+        res.append(js_code)
 
+    conditions_to_send = conditions.copy()
+    conditions_to_send["experiment_code"] = res
+    data = experiment_runner(conditions_to_send)
+
+    result = [json.loads(item) for item in data]
+    return Delta(experiment_data=pd.DataFrame(result))
 
 # Now, we can run our components
 for _ in range(3):

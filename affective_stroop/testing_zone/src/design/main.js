@@ -55,18 +55,21 @@ const main = async (id, condition) => {
         })
 
         // STIMULUS
+       
         stimulus_timeline.push({
             type: htmlKeyboardResponse,
             stimulus: `<div style="color: ${color}">${word}</div>`,
             choices: ['c', 'd', 'n', 'j'],
             trial_duration: STIMULUS_DURATION,
             response_ends_trial: true,
-            on_finish: function (data) { // here we set the correct (based on response and keymapping) and the phase as entry in the data
-                const key = jsPsych.data.getLastTrialData()['trials'][0]['response']
-                data['correct'] = keyToResponseMapping[key] === color
-                data['phase'] = phase
+            on_finish: function (data) {
+                const key = jsPsych.data.getLastTrialData()['trials'][0]['response'];
+                data['correct'] = keyToResponseMapping[key] === color;
+                data['phase'] = phase;
+                data['valence'] = valence;
             }
-        })
+        });
+
 
         // FEEDBACK
         if (phase === 'training') {
@@ -90,7 +93,10 @@ const main = async (id, condition) => {
 
     // create lists for colors and words
     const colors = ['red', 'green', 'blue', 'yellow']
-    const words = ['RED', 'GREEN', 'BLUE', 'YELLOW']
+    const emotionWords = ['death', 'pain', 'fear', 'war'];
+    const neutralWords = ['table', 'book', 'window', 'chair'];
+    const words = [...emotionWords, ...neutralWords];
+
 
     // get a random color form the list
     const rand_color = () => {
@@ -98,9 +104,12 @@ const main = async (id, condition) => {
     }
 
     // get a random word from the list
-    const rand_word = () => {
-        return words[Math.floor(Math.random() * words.length)];
-    }
+    const rand_word_with_valence = () => {
+        const allWords = [...emotionWords.map(w => ({ word: w, valence: 'emotional' })), 
+                      ...neutralWords.map(w => ({ word: w, valence: 'neutral' }))];
+        return allWords[Math.floor(Math.random() * allWords.length)];
+    };
+
 
     // MAKE THE EXPERIMENT TIMELINE
 
@@ -131,13 +140,15 @@ const main = async (id, condition) => {
     // Pre-training
     let pretraining = [];
     for (let i = 0; i < PRE_TRAIN_TRIALS; i++) {
-        pretraining = pretraining.concat(trial(rand_color(), rand_word(), 'pre-training'));
+        const color = rand_color();
+        const { word, valence } = rand_word_with_valence();
+        pretraining = pretraining.concat(trial(color, word, valence, 'pre-training'));
     }
 
     // training. Here we use the condition to set the number of training trials
     let training = [];
     for (let i = 0; i < condition['n_train']; i++) {
-        training = training.concat(trial(rand_color(), rand_word(), 'training'));
+        training = training.concat((trial(color, word, valence, 'pre-training'));
     }
 
     // post-training
