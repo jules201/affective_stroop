@@ -78,19 +78,20 @@ def experimentalist_on_state(variables, num_samples):
 # (https://console.firebase.google.com/)
 #   -> project -> project settings -> service accounts -> generate new private key
 
-firebase_credentials = {
-    "type": "type",
-    "project_id": "project_id",
-    "private_key_id": "private_key_id",
-    "private_key": "private_key",
-    "client_email": "client_email",
-    "client_id": "client_id",
-    "auth_uri": "auth_uri",
-    "token_uri": "token_uri",
-    "auth_provider_x509_cert_url": "auth_provider_x509_cert_url",
-    "client_x509_cert_url": "client_x509_cert_url"
-}
 
+firebase_credentials = {"type": "service_account",
+  "project_id": "stroop-task-cef1d",
+  "private_key_id": "2be33a60e31db23a1933e70a1291e95a6a54670a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCpUgtVcTUEZjPN\n10rnCGhtaDSj26f4HeynyTE1H2ngy87X4kgbbIE3b2CHmLj124U25t4WjmVsgd7x\nEqceA5UKl8vbGL15tEq+K94ihNwYtNsvLvoqAC7izqRhqtA0eMNkNo0/3ah8tOId\nOzrNYRbrKUMcm58jFj+3dORMfdnRJ13dRg9pvPQ4uBK++WfEccGJ1Czsza4piYod\naB5L17DbBIqmhc4Q0nKSy9PZdCORra3OpA3QLJFimVo90Lpr5mRt+Lbc53+caMAk\nrZni63m8x4jaCeIdLlAHdkKBm6XefuWIeAnDDvBjkpJTR04bDr3nyYipM94apOIT\nLY97F7tZAgMBAAECggEABjJc/NMIVDFjWviyopLxs3NZXdfXpWJ++0MHPID6UIJU\n/xymc+58Kim22C+UMVdH4FMBtMSgXKDCJoN+vz/1T+5vRQT6Rj59b8lON2gyX+sa\njHcFK81W6fETHgnw1cLHr965O6milXHPRq+YvtR7UL7xWFYvtEqHqXCrPEts0dU2\nNnqoWGzDQlDC9BlrmZQDFdIrbnyh60f09KDTCwM5g9ZNWJ2og7QhvP25Vw8ElzZ/\nfs0q1GT7ke+veCPP7rmumvkmuidX1IllkGNe6ro4JothSGPFZy9NrUi1rGSrBsnz\nCxPIej5pJl1bcvh9S0DAsGwv9VKxQQ0rNSMkaFjviwKBgQDhKnRZjXBNNf+bMPsJ\njBd+S7vOhdgUJcTx+B20SHxaUZaPstD/n3zceqi1XZpiq86HY4M4S1sJCTKuPQOT\noOXtCO+vQ6RiafxwVFoz/fCaPypVdkC7nzqQPSDPXPfunwlCy/XUAeTYt3ZrFyYT\n5Ng/qpmItkwgiqVUdm5pYl5C6wKBgQDAgdenH16rstQVDfr8FDYdsLMa7hO14aBi\n7hRjhRAI4be2psBELzKH1Q8tjm/2/LQB7+Mg0Ag8vL4Yus6+q6nRJA+E3wFC4v0+\ntL39+qHe0na95qKWnsAoijL6vKUO/MD0OXVlaHsdTL4xxDiuNIAJ4YRHTIuRZveu\nPXMmXVFBywKBgQDcgq1Lfn66vuVCYOeY4/+mChk1GlMQ+CQ2LB07D7no4fonZKHV\nlaW8bsuGQtMNSuCKKuS5XuMaqE1f4hT8oRhL2PKSnBYC43T7tUBZppnZFX8qDxM6\nK6g41gSpz4xnvoxdRE3NgMVTj+iC3DrIRNebEkImZxGK1P0xCIL85f8WXQKBgFxH\n4dDDQOaduvy8zuu35Jkm8zSdm+U8W14RMsTiLGWVjjOIi/Ijjd1/TN9RwGptiPzE\nueQo1UoIUDgalLDiKW2QE8BmBnzBwxQkIE93rdDaowE1Zgs93m+QkA+SDq24i+aH\nBLev9hR9jU7d+S3JDPevm3FySBVTfrePzXs+kI0xAoGBANFVhbUPgMYJy4X9+J3U\n+CsoS0nSZKqgkUhoUqlgei/J7p7DF2T6Et2zSxojl1dyXCcX/FUcyL7qHQVNazXf\nVs0M2msoP6p4hrCprbIkLKkq4goXMrFCWv5OBWJgpN7xIb6K12CNs+YkC/ON7bew\naOO0nTFTsQvQpla83HCpGDtM\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@stroop-task-cef1d.iam.gserviceaccount.com",
+  "client_id": "109846230290770747789",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40stroop-task-cef1d.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
+	
 # simple experiment runner that runs the experiment on firebase
 experiment_runner = firebase_runner(
     firebase_credentials=firebase_credentials,

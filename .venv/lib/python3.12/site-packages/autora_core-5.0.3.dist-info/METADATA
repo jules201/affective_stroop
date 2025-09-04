@@ -1,0 +1,97 @@
+Metadata-Version: 2.1
+Name: autora-core
+Version: 5.0.3
+Summary: Autonomous Research Assistant (AutoRA) is a framework for automating steps of the empirical research process. 
+Author-email: Sebastian Musslick <sebastian_musslick@brown.edu>, John Gerrard Holland <john_holland1@brown.edu>
+License: MIT License
+        
+        Copyright (c) 2023 Autonomous Empirical Research Initiative
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: homepage, http://www.empiricalresearch.ai
+Project-URL: repository, https://github.com/AutoResearch/autora-core
+Project-URL: documentation, https://autoresearch.github.io/autora/
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: <4,>=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy <2,>=1
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: typer[all]
+Provides-Extra: build
+Requires-Dist: build ; extra == 'build'
+Requires-Dist: twine ; extra == 'build'
+Requires-Dist: flake8 ; extra == 'build'
+Requires-Dist: pre-commit ; extra == 'build'
+Provides-Extra: cylc
+Requires-Dist: cylc-flow ; extra == 'cylc'
+Requires-Dist: cylc-uiserver ; extra == 'cylc'
+Provides-Extra: dev
+Requires-Dist: autora-core[test] ; extra == 'dev'
+Requires-Dist: autora-core[build] ; extra == 'dev'
+Requires-Dist: autora-core[notebook] ; extra == 'dev'
+Requires-Dist: autora-core[docs] ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: mkdocs-material ; extra == 'docs'
+Requires-Dist: mkdocs-gen-files ; extra == 'docs'
+Requires-Dist: mkdocs-literate-nav ; extra == 'docs'
+Requires-Dist: mkdocs-section-index ; extra == 'docs'
+Requires-Dist: mkdocs-multirepo-plugin ; extra == 'docs'
+Requires-Dist: mkdocstrings-python ; extra == 'docs'
+Requires-Dist: mkdocs-jupyter ; extra == 'docs'
+Requires-Dist: pymdown-extensions ; extra == 'docs'
+Provides-Extra: notebook
+Requires-Dist: jupyter ; extra == 'notebook'
+Requires-Dist: ipython ; extra == 'notebook'
+Requires-Dist: ipywidgets ; extra == 'notebook'
+Provides-Extra: serializers
+Requires-Dist: dill ; extra == 'serializers'
+Requires-Dist: pyyaml ; extra == 'serializers'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: hypothesis[pandas] ; extra == 'test'
+Requires-Dist: autora-core[serializers] ; extra == 'test'
+
+# AutoRA Core
+
+`autora-core` is the core python module for [`autora`](https://autoresearch.github.io/autora/) 
+(<b>Auto</b>mated <b>R</b>esearch <b>A</b>ssistant), an open-source framework for 
+automating multiple stages of the empirical research process, including model discovery, experimental design, data 
+collection, and documentation for open science.
+
+The primary purpose of this module is to provide utilities for: 
+- describing experiments, 
+- running experimentalist pipelines,
+- running cyclical experiments
+
+See the tutorials and user guide at [`autora`](https://autoresearch.github.io/autora/) to get started.

@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: autora-synthetic
+Version: 2.2.0
+Summary: AutoRA Synthetic Experiments
+License: MIT License
+        
+        Copyright (c) 2023 Autonomous Empirical Research Initiative
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: homepage, http://www.empiricalresearch.ai
+Project-URL: repository, https://github.com/AutoResearch/autora-synthetic
+Project-URL: documentation, https://autoresearch.github.io/autora-synthetic/
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: autora-core
+Provides-Extra: dev
+Requires-Dist: autora-synthetic[test] ; extra == 'dev'
+Requires-Dist: autora-core[dev] ; extra == 'dev'
+Requires-Dist: autora-workflow ; extra == 'dev'
+Requires-Dist: scikit-learn ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: hypothesis ; extra == 'test'
+
+# AutoRA Synthetic Data
+
+Synthetic experiment data for testing AutoRA theorists and experimentalists. 
+
+## User Guide
+
+You will need:
+
+- `python` 3.8 or greater: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+Install the synthetic data package (as part of `autora`):
+
+```shell
+pip install -U "autora"
+```
+
+> 💡We recommend using a `python` environment manager like `virtualenv`.
+
+Print a description of the prospect theory model by Kahneman and Tversky by running:
+```shell
+python -c "
+from autora.experiment_runner.synthetic.economics.prospect_theory import prospect_theory
+study = prospect_theory()
+print(study.description)
+"
+```
+
+For more information, see the
+[documentation](https://autoresearch.github.io/autora/user-guide/experiment-runners/synthetic/).
