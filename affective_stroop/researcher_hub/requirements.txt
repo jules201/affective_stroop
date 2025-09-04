@@ -1,0 +1,4 @@
+autora-core
+autora[theorist-bms]
+autora[experimentalist-model-disagreement]
+autora[experiment-runner-firebase-prolific]
