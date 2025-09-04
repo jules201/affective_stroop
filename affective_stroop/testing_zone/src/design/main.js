@@ -148,7 +148,9 @@ const main = async (id, condition) => {
     // training. Here we use the condition to set the number of training trials
     let training = [];
     for (let i = 0; i < condition['n_train']; i++) {
-        training = training.concat((trial(color, word, valence, 'pre-training'));
+        const color = rand_color();
+        const { word, valence } = rand_word_with_valence();
+        training = training.concat(trial(color, word, valence, 'pre-training'));
     }
 
     // post-training
