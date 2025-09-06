@@ -34,10 +34,9 @@ const main = async (id, condition) => {
         'n': 'green',
         'j': 'yellow'
     }
-
-
+   
     // For convenience, we first define a function that returns a trial (as sequence of fixation, soa, stimulus and feedback)
-    const trial = (color, word, phase) => {
+    const trial = (color, word, phase, valence) => {
         const stimulus_timeline = []
         // FIXATION
         stimulus_timeline.push(
@@ -156,7 +155,9 @@ const main = async (id, condition) => {
     // post-training
     let posttraining = []
     for (let i = 0; i < POST_TRAIN_TRIALS; i++) {
-        posttraining = posttraining.concat(trial(rand_color(), rand_word(), 'post-training'));
+        const color = rand_color();
+        const { word, valence } = rand_word_with_valence();
+        posttraining = posttraining.concat(trial(color, word, valence, 'pre-training'));
     }
 
     // a pause trial
@@ -179,6 +180,21 @@ const main = async (id, condition) => {
 
     // return difference between before and after training as observation
     return JSON.stringify({n_train:condition['n_train'], accuracy_difference: (postTrainAcc - preTrainAcc)})
+
+    /*
+    const preTrainEmoRT = jsPsych.data.get().filter({ phase: 'pre-training', valence: 'emotional' }).select('rt').mean();
+const preTrainNeuRT = jsPsych.data.get().filter({ phase: 'pre-training', valence: 'neutral' }).select('rt').mean();
+const postTrainEmoRT = jsPsych.data.get().filter({ phase: 'post-training', valence: 'emotional' }).select('rt').mean();
+const postTrainNeuRT = jsPsych.data.get().filter({ phase: 'post-training', valence: 'neutral' }).select('rt').mean();
+
+// Observation = (post-emotional - post-neutral) - (pre-emotional - pre-neutral)
+const emotionStroopEffectChange = (postTrainEmoRT - postTrainNeuRT) - (preTrainEmoRT - preTrainNeuRT);
+
+return JSON.stringify({
+    n_train: condition['n_train'],
+    valence_rt_diff: emotionStroopEffectChange
+});*/
+
 }
 
 
