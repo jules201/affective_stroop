@@ -27,6 +27,7 @@ variables = VariableCollection(
     dependent_variables=[Variable(name="valence_rt_diff", value_range=(-1000, 1000))])
 
 # *** State *** #
+
 # With the variables, we can set up a state. The state object represents the state of our
 # closed loop experiment.
 state = StandardState(
