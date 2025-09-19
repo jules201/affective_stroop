@@ -15,7 +15,7 @@ import htmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
  * @param condition this is a condition (4-32. Here we want to find out how the training length impacts the accuracy in a testing phase)
  * @returns {Promise<*>} the accuracy in the post-trainging phase relative to the pre-training phase
  */
-const main = async (id, condition) => {
+const main = async (id, condition) => { 
     const jsPsych = initJsPsych()
 
     // constants
